@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>交通卡余额查询</title>
+	<script type="text/javascript">
+		function f1(){
+			var cardno = document.getElementById('cardno').value;
+			var url = "./data.php?cardno="+cardno;
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4){
+					var result = xhr.responseText;
+					document.getElementById("result").innerHTML = xhr.responseText;
+					//alert(xhr.responseText);
+				}
+			}
+			xhr.open('get',url);
+			xhr.send(null);
+		}
+	</script>
+	<style type="text/css">
+		*{
+			font-size: 45px;
+		}
+	</style>
+</head>
+<body>
+		<h2>上海公共交通卡</h2>
+		<h3>余额查询</h4>
+		<label for="cardno">卡号：</label><input type="text" name="cardno" id="cardno">
+		<input type="button" value="查询" onclick="f1()">
+		<div><span>余额：</span><span id="result"></span></div>
+	
+</body>
+</html>
